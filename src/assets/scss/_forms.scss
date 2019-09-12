@@ -1,0 +1,63 @@
+input, select, .mat-select, textarea, textarea.mat-input-element {
+  border-radius: 4px;
+  border: solid 1px $border;
+  display: block;
+  font-family: "Helvetica Neue", sans-serif;
+  margin: .25rem 0 0;
+  padding: .75rem;
+  width: 100%;
+  &:focus {
+    border-color: $primary;
+  }
+  &.ng-invalid:not(.ng-untouched) {
+    background-image: url('/assets/img/error.svg');
+    background-size: 24px;
+    background-position: calc(100% - .5rem) center;
+    background-repeat: no-repeat;
+    border-color: lighten($danger, 25%);
+    color: lighten($danger, 25%);
+  }
+  &[type="color"] {
+    -webkit-appearance: none;
+    background-image: url('/assets/img/color-picker.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border-radius: 50%;
+    height: 40px;
+    padding: 0;
+    width: 40px;
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border-radius: 50%;
+    }
+    &::-webkit-color-swatch {
+      border: none;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    &:hover,
+    &:focus {
+      background-color: $grey;
+      background-image: url('/assets/img/color-picker-white.svg');
+      cursor: pointer;
+    }
+  }
+}
+p.hint {
+  margin: .25rem 0 0;
+  font-size: .75rem;
+  color: lighten($grey-dark, 25%);
+  line-height: normal;
+}
+label {
+  display: block;
+  margin-top: 1rem;
+}
+.mat-hint {
+  display: block;
+  padding-top: .25rem;
+  font-style: italic;
+  font-size: .875rem;
+  color: $grey;
+}

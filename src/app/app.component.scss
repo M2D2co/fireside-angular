@@ -1,0 +1,110 @@
+@import '../assets/scss/mixins';
+
+$header-height: 3rem;
+$nav-height: 2.5rem;
+$footer-height: 4rem;
+
+.page {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: auto;
+}
+
+header {  
+  background: $grey-light;
+  box-sizing: border-box;
+  padding: .25rem 1rem;
+}
+
+nav {
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  left: 0;
+  height: $nav-height;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: $primary;
+  text-align: center;
+  color: white;
+  font-size: .875rem;
+  a:link, a:visited { color: white; }
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+}
+li {
+  list-style-type: none;
+  padding: 1rem;
+}
+
+img.logo {
+  display: block;
+  margin: .5rem 0 .25rem;
+  width: 6rem;
+}
+
+footer {
+  box-sizing: border-box;
+  font-size: .75rem;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: #{$nav-height};
+  margin-top: auto;
+  & > span, & > a {
+    display: block;
+    margin-bottom: .25rem;
+  }
+}
+
+@media(min-width: $small) {
+  $footer-height: 3rem;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    display: fixed;
+
+    position: fixed;
+    top: 0;
+    height: $header-height;
+    width: 100vw;
+  }
+  nav {
+    position: relative;
+    background: none;
+    justify-content: flex-end;
+    margin-top: .25rem;
+    a:link, a:visited {
+      color: $primary;
+    }
+  }
+  
+  .content {
+    margin-top: $header-height;
+  }
+
+  footer {
+    margin: auto 0 0;
+    span, a {
+      display: inline;
+    }
+    a {
+      margin-right: 1rem;
+    }
+  }
+}

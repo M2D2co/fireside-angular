@@ -1,0 +1,199 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/theming';
+@import './assets/scss/theme';
+@import './assets/scss/colors';
+@import './assets/scss/mixins';
+@import './assets/scss/forms';
+
+
+* { box-sizing: border-box; }
+*:focus {
+  outline: none;
+  outline-color: rbga(0, 0, 0, 0);
+}
+
+.material-icons {
+  direction: ltr;
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-family: "Helvetica Neue", sans-serif;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, .87);
+}
+
+html, body, 
+div, span, pre, code, button, a,
+article, section, main nav, header, footer,
+h1, h2, h3, h4, h5, h6,
+form, legend, label, input, textarea, select,
+ul, ol, li, dl, dd, dt {
+  box-sizing: border-box;
+}
+
+main {
+  margin: 0 1.25rem;
+}
+
+.sr-only {
+  position: absolute;
+  top: -999rem;
+  left: -999rem;
+}
+
+a:link,
+a:visited {
+  color: $primary;
+  text-decoration: none;
+  &.router-link-active {
+    color: $grey-dark;
+  }
+}
+
+a:hover,
+a:focus {
+  transition: all ease-in-out 150ms;
+  color: $accent;
+  text-decoration: underline;
+}
+
+.router-link-active {
+  color: $accent;
+}
+
+.error {
+  @include card-container;
+  background: lighten($danger, 58%);
+  padding: 1.25rem;
+  h2 {
+    margin-top: 0;
+    color: $danger;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: $primary;
+  font-family: 'Baumans', cursive;
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: $primary;
+  font-family: 'Baumans', cursive;
+}
+
+h3 {
+  font-size: 1.0625rem;
+  color: $grey;
+  letter-spacing: .0625rem;
+  font-variant: small-caps;
+}
+
+h4 {
+  font-size: 1rem;
+  color: $grey;
+  font-weight: normal;
+}
+
+table {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  @include mat-elevation(2, $grey, 0.7);
+  caption {
+    font-size: .875rem;
+    text-align: left;
+  }
+  th, td {
+    border: solid 1px $grey-light;
+    padding: .5rem;
+  }
+  th {
+    font-size: .875rem;
+    color: darken($grey, 37%);
+    font-variant: small-caps;
+  }
+  td { text-align: left; }
+  .icon {
+    text-align: center;
+    img {
+      max-height: 2rem;
+      max-width: 2rem;
+    }
+  }
+  tbody tr:nth-of-type(odd) {
+    background: lighten($primary, 65%);
+  }
+}
+
+p { line-height: 1.5rem; }
+
+
+hr {
+  border: none;
+  border-top: solid 1px darken($border, 10%);
+  border-bottom: solid 1px $border;
+  height: 3px;
+  margin: 1rem 0;
+}
+
+code, pre {
+  box-sizing: border-box;
+  background: $dark;
+  color: $text-light;
+  font-size: .75rem;
+  overflow: auto;
+}
+pre {
+  padding: 1rem;
+}
+
+.snackbar-error {
+  background: $danger;
+  color: white;
+  button {
+    color: white;
+    background: darken($danger, 10%);
+  }
+}
+
+.snackbar-success {
+  background: $primary;
+}
+
+.snackbar-info {
+  background: $accent;
+  color: $grey-dark;
+  button {
+    color: $grey-dark;
+    background: darken($accent, 10%);
+  }
+}
+
+.actions {
+  margin-top: .5rem;
+  display: flex;
+  justify-content: flex-end;
+}

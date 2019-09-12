@@ -1,0 +1,64 @@
+@import '../../../../assets/scss/_mixins';
+
+.card {
+  max-width: $small;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+h1 {
+  margin: 1rem 0 1.5rem;
+}
+
+form textarea,
+form input {
+  margin: .25rem 0 0;
+  width: 100%;
+}
+
+.actions {
+  a, button {
+    display: block;
+    margin: 0 auto 1rem;
+    width: 80%;
+  }
+  a, a:link, a:visited {
+    text-decoration: none;
+  }
+}
+
+img {
+  display: block;
+  margin: 2rem auto;
+  width: 50%;
+}
+
+@media (min-width: $small) {
+  .card {
+    @include card-container;
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
+    button, a {
+      margin: 0 0 0 .5rem;
+      width: auto;
+    }
+  }
+}
+
+label em {
+  font-size: .75rem;
+}
+
+// honeypot
+.pot {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}

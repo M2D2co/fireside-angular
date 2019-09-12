@@ -1,0 +1,112 @@
+@import '../../../../assets/scss/mixins';
+
+.card {
+  @include card-container;
+  padding: 1rem;
+}
+
+img {
+  border-radius: 50%;
+  width: 4rem;
+}
+
+.card.user {
+  .title {
+    margin-bottom: 1rem;
+  }
+  .provider {
+    border: solid 1px $border;
+    border-radius: 4px;
+    margin-top: 1rem;
+    padding:.5rem 1rem;
+  }
+  .body {
+    align-items: center;
+    display: flex;
+  }
+  h3 {
+    margin: .5rem 0;
+  }
+  img {
+    margin-right: 1rem;
+  }
+  span {
+    display: block;
+    margin: .5rem 0;
+  }
+}
+
+form.emailForm,
+.card.danger form {
+  align-items: flex-end;
+  display: flex;
+  label { 
+    flex-grow: 1;
+    margin-right: 1rem;
+  }
+  button {
+    height: 2.5rem;
+  }
+}
+.password-input {
+  & > span {
+    display: flex;
+    position: relative;
+    input {
+      padding-right: 2.5rem;
+    }
+    button.toggle {
+      position: absolute;
+      bottom: 0;
+      right: 4rem;
+    }
+  }
+}
+
+.username {
+  position: absolute;
+  left: -999rem;
+}
+
+button.link-account {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.card.danger {
+  margin: 3rem auto;
+  border-color: $danger;
+  .title { color: $danger; }
+  label {
+    margin-top: 0;
+  }
+}
+
+@media(min-width: $small) {
+  main {
+    max-width: $medium;
+    margin: 0 auto;
+  }
+  h1 {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+  .content {
+    display: flex;
+    margin: -1rem .5rem;
+    & > div {
+      flex-grow: 1;
+      margin: 1rem;
+      flex-basis: 50%;
+    }
+    .card:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .card.danger {
+    margin: 3rem 1.5rem 1rem;
+    border-color: $danger;
+    .title { color: $danger; }
+  }
+}

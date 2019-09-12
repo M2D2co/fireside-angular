@@ -1,0 +1,40 @@
+<div class="section card">
+  <h1>Contact Us</h1>
+  <form  [formGroup]="contact" (submit)="sendMessage()" *ngIf="showForm else thankYou">
+    <p>We would love to hear from you.</p>
+    <label>
+      Name <em>(Optional)</em>
+      <input matInput type="text" autocomplete="name" maxLength="50" formControlName="name">
+    </label>
+    <label>
+      Telephone Number <em>(Optional)</em>
+      <input matInput type="tel" autocomplete="tel" maxLength="25" formControlName="phone">
+    </label>
+    <label>
+      <span class="required">Email</span>
+      <input matInput type="email" autocomplete="email" maxLength="60" required formControlName="email">
+      <mat-error *ngIf="isInvalid('email')">Please include an email address so we can get back with you.</mat-error>
+    </label>
+    <label>
+      <span class="required">Message</span>
+      <textarea matInput #message maxlength="2000" required formControlName="message" rows="5"></textarea>
+      <mat-error *ngIf="isInvalid('message')">Please let us know how we may help you.</mat-error>
+      <mat-hint>{{ message.value.length }} / 2000</mat-hint>
+    </label>
+    <input type="email" id="email" class="pot" name="email" placeholder="Your e-mail here" required tabindex="-1">
+    <div class="actions">
+      <button mat-flat-button color="primary" type="submit" [disabled]="contact.invalid">Send</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #thankYou>
+  <div class="thank-you" role="a">
+    <h2>Thank You!</h2>
+    <p>Your message has been sent.</p>
+    <img src="../../../assets/img/email.svg" alt="" />
+    <div class="actions">
+      <a mat-stroked-button color="primary" [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a>
+    </div>
+  </div>
+</ng-template>

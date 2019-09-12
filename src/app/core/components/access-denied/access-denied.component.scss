@@ -1,0 +1,9 @@
+@import '../../../../assets/scss/mixins';
+@import '../../../../assets/scss/colors';
+
+main {
+  @include card-container;
+  margin: 1.25rem auto;
+  max-width: $small;
+}
+

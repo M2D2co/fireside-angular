@@ -1,0 +1,38 @@
+image: node:8.9.0
+pipelines:
+  branches:
+    master:
+      - step:
+          name: install
+          deployment: test
+          caches:
+            - project-node
+          script:
+            - npm install
+          artifacts:
+            - node_modules/**
+      - step:
+          name: build project
+          script:
+            - npm run build:test
+          artifacts:
+            - dist/**
+      - step:
+          name: cloud functions
+          caches:
+            - functions-node
+          script:
+            - cd functions && npm install
+            - cd ../
+          artifacts:
+            - functions/**
+      - step:
+          name: deploy
+          script:
+            - npm run deploy:test
+
+definitions:
+  caches:
+    project-node: node_modules
+    functions-node: functions/node_modules
+
