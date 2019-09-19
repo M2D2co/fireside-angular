@@ -25,10 +25,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angulartics2Module } from 'angulartics2';
 import { ErrorService } from './services/error/error.service';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChatRoomComponent
   ],
   imports: [
     BrowserModule,

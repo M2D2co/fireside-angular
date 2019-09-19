@@ -1,0 +1,27 @@
+<main class="chat">
+  <h1>Chat Room</h1>
+  <div class="input-group">
+    <form [formGroup]="chatForm" (submit)="sendChat()">
+      <input mat-input formControlName="content" type="text" spellcheck="true" required>
+      <button type="submit" mat-flat-button color="primary" [disabled]="chatForm.invalid">Send</button>
+    </form>
+  </div>
+  <div id="chats" class="chat-list">
+    <div *ngFor="let chat of chats | async | reverse">
+      <span>
+        <div>
+          <span class="info">{{chat.displayName || ''}} 
+            <i *ngIf="chat.displayName && chat.timestamp"
+              class="fa fa-circle" aria-hidden="true"></i> {{ chat.timestamp | date:'medium' }}</span>
+        </div>
+        <div class="chat-bubble">
+          <img class="avatar" *ngIf="chat.photoURL && chat.uid !== currentUser.uid" [src]="chat.photoURL"
+            alt="avatar">
+          <span class="message">{{chat.content}}</span>
+          <img class="avatar" *ngIf="chat.photoURL && chat.uid === currentUser.uid" [src]="chat.photoURL"
+            alt="avatar">
+        </div>
+      </span>
+    </div>
+  </div>
+</main>

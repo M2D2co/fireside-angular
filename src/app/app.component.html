@@ -5,6 +5,7 @@
     </a>
     <nav>
       <ul>
+        <li *ngIf="(user | async)"><a [routerLink]="['/chat']" routerLinkActive="router-link-active">Chat Room</a></li>
         <li *ngIf="!(user | async)"><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></li>
         <li *ngIf="(user | async)"><a [routerLink]="['/profile']" routerLinkActive="router-link-active">Profile</a></li>
         <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a></li>

@@ -10,12 +10,14 @@ import { LoginComponent } from './core/components/login/login.component';
 
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'profile', component: UserProfileComponent, canActivate: [AngularFireAuthGuard]},
+  { path: 'chat', component: ChatRoomComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'contact', component: ContactComponent },
   { path: '401', component: AccessDeniedComponent },
 
