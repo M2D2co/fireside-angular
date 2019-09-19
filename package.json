@@ -1,6 +1,6 @@
 {
-  "name": "Starter",
-  "version": "0.0.0",
+  "name": "playingwithfire",
+  "version": "8.0.0",
   "private": true,
   "scripts": {
     "ng": "ng",
@@ -13,7 +13,7 @@
     "serve-docs": "compodoc -s",
     "build:test": "ng build -c test",
     "serve:api": "ng serve -c api",
-    "deploy:test": "firebase deploy --token=$FIREBASE_TOKEN --project mirach-portal-dev --non-interactive",
+    "deploy:test": "firebase deploy --token=$FIREBASE_TOKEN --project fireside-73c10 --non-interactive",
     "release": "git checkout master && git pull && git checkout release && git pull && git merge master && git push",
     "preversion": "git checkout master && git pull",
     "postversion": "git push && git push --tags"

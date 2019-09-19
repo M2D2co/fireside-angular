@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mirach": {
+    "fireside": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -76,24 +76,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mirach:build"
+            "browserTarget": "fireside:build"
           },
           "configurations": {
             "api": {
-              "browserTarget": "mirach:build:api"
+              "browserTarget": "fireside:build:api"
             },
             "test": {
-              "browserTarget": "mirach:build:test"
+              "browserTarget": "fireside:build:test"
             },
             "production": {
-              "browserTarget": "mirach:build:production"
+              "browserTarget": "fireside:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mirach:build"
+            "browserTarget": "fireside:build"
           }
         },
         "test": {
@@ -129,7 +129,7 @@
         }
       }
     },
-    "mirach-e2e": {
+    "fireside-e2e": {
       "root": "./e2e",
       "projectType": "application",
       "architect": {
@@ -137,7 +137,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mirach:serve"
+            "devServerTarget": "fireside:serve"
           }
         },
         "lint": {
@@ -154,7 +154,7 @@
       }
     }
   },
-  "defaultProject": "mirach",
+  "defaultProject": "fireside",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "starter",

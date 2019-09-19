@@ -1,13 +1,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyC9gVJz6C5Wc4-gBhZFlPAAkYJftBuc1lw',
-    authDomain: 'starter-b9955.firebaseapp.com',
-    databaseURL: 'https://starter-b9955.firebaseio.com',
-    projectId: 'starter-b9955',
-    storageBucket: '',
-    messagingSenderId: '34451201717',
-    appId: '1:34451201717:web:6fbe72ee7534286d6928fc'
+    apiKey: 'AIzaSyAqvBkj8dpEL22TKMe8f2mfaL7MmEOcLcM',
+    authDomain: 'fireside-73c10.firebaseapp.com',
+    databaseURL: 'https://fireside-73c10.firebaseio.com',
+    projectId: 'fireside-73c10',
+    storageBucket: 'fireside-73c10.appspot.com',
+    messagingSenderId: '811594146603',
+    appId: '1:811594146603:web:95ca49e8f7cd3937dd5b6e'
   },
   google: {
     trackingId: null,

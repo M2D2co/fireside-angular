@@ -1,14 +1,15 @@
 import { AppPage } from './app.po';
 
-describe('mirach App', () => {
+describe('Fireside Chat', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display welcome message', async () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    const text = await page.getParagraphText();
+    expect(text).toEqual('Welcome to app!');
   });
 });

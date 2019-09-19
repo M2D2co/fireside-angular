@@ -27,10 +27,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
     fixture.destroy();
   }));
-  it(`should have as title 'Mirach'`, async(() => {
+  it(`should have as title 'Fireside'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Mirach');
+    expect(app.title).toEqual('Fireside');
     fixture.destroy();
   }));
 });

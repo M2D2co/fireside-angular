@@ -1,4 +1,4 @@
-# Mirach
+# Playing With Fire
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
@@ -51,6 +51,6 @@ If you want to easily run the docs locally, globally install the Compodoc and th
 - `$ npm run release` to update the release branch and initiate a release
 - `$ ng build -c production`
 - `$ firebase list`
-- `$ firebase use cirrostyle`
+- `$ firebase use <db name>`
 - `$ firebase deploy`
 - `$ npm version prerelease --preid=<next-version-name>` to set the prerelease version

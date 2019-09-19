@@ -23,7 +23,7 @@ class Message {
     this.phone = contact.phone;
     this.email = contact.email;
     this.message  = contact.message;
-    this.subject = environment.production ? 'Cirrostyle Contact' : '[TEST] Cirrostyle Contact';
+    this.subject = environment.production ? 'Andromeda Contact' : '[TEST] Andromeda Contact';
     this.timestamp = Date.now();
   }
 }
