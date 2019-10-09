@@ -26,6 +26,7 @@ import { Angulartics2Module } from 'angulartics2';
 import { ErrorService } from './services/error/error.service';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     Angulartics2Module.forRoot(),
   ],
   providers: [
