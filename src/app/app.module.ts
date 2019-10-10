@@ -27,6 +27,7 @@ import { ErrorService } from './services/error/error.service';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { ChatService } from './chat/services/chat.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: ErrorHandler, useClass: ErrorService },
-    AngularFireAuthGuard
+    AngularFireAuthGuard,
+    ChatService,
   ],
   bootstrap: [ AppComponent ]
 })

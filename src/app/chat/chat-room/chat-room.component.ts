@@ -6,15 +6,8 @@ import { Subject, Observable } from 'rxjs';
 import { User } from 'firebase';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { takeUntil } from 'rxjs/operators';
-
-class Chat {
-  content?: string;
-  sentImage?: string;
-  displayName: string;
-  photoURL: string;
-  timestamp: Date;
-  uid: string;
-}
+import { ChatService } from '../services/chat.service';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'starter-chat-room',
@@ -31,8 +24,7 @@ export class ChatRoomComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private fb: FormBuilder,
-    private db: AngularFireDatabase,
-    private fs: AngularFireStorage,
+    private chatService: ChatService,
   ) {
     this.chatForm = this.fb.group({
       content: [''],
@@ -46,60 +38,35 @@ export class ChatRoomComponent implements OnInit {
       this.currentUser = user;
     });
 
-    this.chats = this.db.list<Chat>('chats').valueChanges().pipe(takeUntil(this.destroyed$));
+    this.chats = this.chatService.listChats().pipe(takeUntil(this.destroyed$));
   }
 
   selectImage(event: any) {
     const fileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-      this.chatForm.patchValue({ image: file});
+      this.chatForm.patchValue({ image: file });
     }
   }
 
-  sendChat() {
+  async sendChat() {
     const content = this.chatForm.get('content').value;
     const image = this.chatForm.get('image').value;
-    if (content) {
-      this.sendMessage(content);
-    } else if (image || image.name) {
-      this.upload(image);
-    } else {
-      return false;
-    }
-  }
 
-  sendMessage(message: string) {
-    console.log('sendMessage', message);
     const chat: Chat = {
-      content: message,
+      content: content,
       timestamp: new Date(),
       uid: this.currentUser.uid,
       displayName: this.currentUser.displayName,
       photoURL: this.currentUser.photoURL,
     };
-    this.db.list<Chat>('chats').push(chat);
-    this.chatForm.get('content').reset();
-  }
-
-  upload(image: File) {
-    console.log('upload', image);
-    const uid = this.currentUser.uid;
-    const ts = new Date();
-    const filePath = `/images/${uid}/${ts.getTime()}/${image.name}`;
-    this.fs.upload(filePath, image).then(async snapshot => {
-      const imageUrl = await snapshot.ref.getDownloadURL();
-      const chat: Chat = {
-        sentImage: imageUrl,
-        timestamp: ts,
-        uid: this.currentUser.uid,
-        displayName: this.currentUser.displayName,
-        photoURL: this.currentUser.photoURL,
-      };
-      this.db.list<Chat>('chats').push(chat);
-      this.chatForm.get('file').reset();
-      this.chatForm.get('image').reset();
-    });
+    if (content || (image && image.name)) {
+      const key = await this.chatService.postChat(chat);
+      if (image && image.name) {
+        await this.chatService.uploadImage(chat, image, key);
+      }
+      this.chatForm.reset();
+    }
   }
 
 }
