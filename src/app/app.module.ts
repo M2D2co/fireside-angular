@@ -28,6 +28,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { ChatService } from './chat/services/chat.service';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ChatService } from './chat/services/chat.service';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    MaterialModule,
     HttpClientModule,
     HttpClientJsonpModule,
     HttpClientXsrfModule.withOptions({

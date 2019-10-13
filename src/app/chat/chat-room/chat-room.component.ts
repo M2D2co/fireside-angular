@@ -17,6 +17,8 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 export class ChatRoomComponent implements OnInit {
   destroyed$: Subject<boolean> = new Subject();
 
+  inputImage = false;
+
   currentUser: User;
   chatForm: FormGroup;
   chats: Observable<Chat[]>;
@@ -67,6 +69,10 @@ export class ChatRoomComponent implements OnInit {
       }
       this.chatForm.reset();
     }
+  }
+
+  toggleInputImage() {
+    this.inputImage = !this.inputImage;
   }
 
 }
