@@ -1,85 +1,26 @@
 {
   "rules": {
-    ".read": "auth !== null && root.child('acl').child(auth.uid).child('superAdmin').val() === true",
-    ".write": "auth !== null && root.child('acl').child(auth.uid).child('superAdmin').val() === true",
-    "acl": {
-      "$user_id": {
-        ".read": "auth.uid === $user_id"
-      }
+    "chats": {
+      ".read": true,
+      ".write": "auth !== null"
+    },
+    "check": {
+      ".read": true,
+      ".write": false
     },
     "users": {
       "$user_id": {
         ".write": "auth.uid === $user_id",
-        ".read": "auth.uid === $user_id"
-      }
-    },
-    "sections": {
-      "$projectId": {
-        ".read": "auth !== null && root.child('clients').child( root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share')",
-        ".write": "auth !== null && (root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || (newData.exists() && !data.exists())) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write')"
-      }
-    },
-    "typography": {
-      "$projectId": {
-        ".read": "auth !== null && root.child('clients').child( root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share')",
-        ".write": "auth !== null && (root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || (newData.exists() && !data.exists())) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write')"
-      }
-    },
-    "colors": {
-      "$projectId": {
-        ".read": "auth !== null && root.child('clients').child( root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share')",
-        ".write": "auth !== null && (root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || (newData.exists() && !data.exists())) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write')"
-      }
-    },
-    "fonts": {
-      "$projectId": {
-        ".read": "auth !== null && root.child('clients').child( root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share')",
-        ".write": "auth !== null && (root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || (newData.exists() && !data.exists())) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write')"
-      }
-    },
-    "projects": {
-      "$projectId": {
-        ".write": "auth !== null && (root.child('clients').child( root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || ( newData.exists() && !data.exists())) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin')",
-        ".read": "auth !== null && root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-admin')",
-        "info": {
-          ".read": "auth !== null && root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share')",
-          ".write": "auth !== null && (root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || (newData.exists() && !data.exists()) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write'))"
-        },
-        "sections": {
-          ".read": "auth !== null && root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-read' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share')",
-          ".write": "auth !== null && (root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() || (newData.exists() && !data.exists()) && (root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-write'))"
-        },
-        "users": {
-          ".read": "auth !== null && root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share'",
-          ".write": "auth !== null && root.child('clients').child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).exists() && root.child('acl').child(auth.uid).child(root.child('users').child(auth.uid).child('activeClient').val()).child('projects').child($projectId).child('access').val() === 'project-share'",
-          "$user_id": {
-            ".write": "auth.uid === $user_id",
-            ".read": "auth.uid === $user_id"
-          }
-        }
-      }
-    },
-    "clients": {
-      "$clientId": {
-        ".read": "auth !== null && (root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-write' || root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-read')",
-        ".write": "auth !== null && (root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-owner' || root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-admin' || root.child('acl').child(auth.uid).child($clientId).child('access').val() === 'client-write')",
+        ".read": "auth.uid === $user_id",
         "profile": {
-          ".read": true
+          ".read": 	true
         },
-        "users": {
-          "$user_id": {
-            ".write": "auth.uid === $user_id",
-            ".read": "auth.uid === $user_id"
+        "chats": {
+          "$chat_id": {
+            ".write": "$chat_id === auth.uid"
           }
         }
       }
-    },
-    "messages": {
-      ".read": "false",
-      ".write": "true"
-    },
-    "config": {
-        ".read": "auth !== null"
     }
   }
 }
