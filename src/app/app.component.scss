@@ -59,6 +59,12 @@ img.logo {
 }
 
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: solid 1px #122849;
   box-sizing: border-box;
   font-size: .75rem;
   padding: 1rem;
