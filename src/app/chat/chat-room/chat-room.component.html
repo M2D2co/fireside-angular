@@ -1,10 +1,14 @@
-<main class="chat">
+<div class="chat">
   <h1>Chat Room</h1>
   <div class="input-group">
-    <form [formGroup]="chatForm" (submit)="sendChat()">
-      <input mat-input formControlName="content" type="text" spellcheck="true">
-      <input mat-input formControlName="file" type="file" accept="image/*" (change)="selectImage($event)">
-      <button type="submit" mat-flat-button color="primary">Send</button>
+    <button mat-icon-button (click)="toggleInputImage()">
+        <mat-icon *ngIf="inputImage">camera_alt</mat-icon>
+        <mat-icon *ngIf="!inputImage">edit</mat-icon>
+    </button>
+    <form class="input-group-form" [formGroup]="chatForm" (submit)="sendChat()">
+      <input *ngIf="!inputImage" class="content" mat-input formControlName="content" type="text" spellcheck="true">
+      <input *ngIf="inputImage" class="file" mat-input formControlName="file" type="file" accept="image/*" (change)="selectImage($event)">
+      <button class="send" type="submit" mat-flat-button color="primary">Send</button>
     </form>
   </div>
   <div id="chats" class="chat-list">
@@ -16,16 +20,14 @@
               class="fa fa-circle" aria-hidden="true"></i> {{ chat.timestamp | date:'medium' }}</span>
         </div>
         <div class="chat-bubble">
-          <img class="avatar" *ngIf="chat.photoURL && chat.uid !== currentUser.uid" [src]="chat.photoURL"
+          <img class="avatar" *ngIf="chat.photoURL" [src]="chat.photoURL"
             alt="avatar">
           <span class="message">
             <span *ngIf="chat.content">{{chat.content}}</span>
             <img *ngIf="chat.sentImage" src="{{chat.sentImage}}">
           </span>
-          <img class="avatar" *ngIf="chat.photoURL && chat.uid === currentUser.uid" [src]="chat.photoURL"
-            alt="avatar">
         </div>
       </span>
     </div>
   </div>
-</main>
+</div>

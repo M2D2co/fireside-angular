@@ -11,12 +11,8 @@
     margin: 0;
   }
   .chat-list {
-    position: fixed;
-    top: 16rem;
-    bottom: 4.75rem;
-    left: 0;
-    right: 0;
-    overflow: scroll;
+    overflow: auto;
+    height: 100%;
     padding: 1rem;
     div {
       span.info {
@@ -82,9 +78,24 @@
     }
   }
   .input-group {
+    display: flex;
+    align-items: center;
     border-top: solid 1px $accent;
     border-bottom: solid 1px $accent;
     margin: 0;
     padding: .5rem 1rem;
+
+    .input-group-form {
+      display: flex;
+      align-items: center;
+      flex:1;
+
+      .content {
+        margin: 0 1rem;
+      }
+      .file {
+        margin: 0 1rem;
+      }
+    }
   }
 }
