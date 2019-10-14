@@ -35,6 +35,9 @@
           border-bottom-left-radius: .5rem;
           border-bottom-right-radius: .5rem;
           margin-bottom: .75rem;
+          span+img {
+            display: block;
+          }
           img {
             border-radius: 0;
             width: auto;
