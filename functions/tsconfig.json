@@ -6,7 +6,10 @@
     "outDir": "lib",
     "sourceMap": true,
     "target": "es6",
-    "types": []
+    "types": [
+      "node",
+      "jasmine"
+    ]
   },
   "compileOnSave": true,
   "include": [
