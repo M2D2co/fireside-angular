@@ -32,7 +32,7 @@ describe('ContactService', () => {
   });
 
   it('should be created', () => {
-    const service: ContactService = TestBed.get(ContactService);
+    const service: ContactService = TestBed.inject(ContactService);
     expect(service).toBeTruthy();
   });
 });

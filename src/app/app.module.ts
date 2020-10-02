@@ -5,9 +5,6 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule, HttpClientJsonpModule } from '@angular/common/http';
 
-//  Angular Material
-import 'hammerjs';
-
 //  Routing
 import { AppRoutingModule } from './app.routing';
 
