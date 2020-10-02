@@ -23,7 +23,7 @@ declare global { const firebaseui; }
 export class LoginComponent implements AfterViewInit {
 
   ui;
-  @ViewChild('uiContainer', { static: false }) uiContainer: HTMLElement;
+  @ViewChild('uiContainer') uiContainer: HTMLElement;
   uiConfig = {
     signInSuccessUrl: '/',
     signInFlow: 'redirect',
