@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
+import { Chat } from '../chat.model';
 
 @Injectable({
   providedIn: 'root'

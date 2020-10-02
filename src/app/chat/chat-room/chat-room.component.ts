@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { takeUntil } from 'rxjs/operators';
 import { ChatService } from '../services/chat.service';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
-
+import { Chat } from '../chat.model';
 @Component({
   selector: 'starter-chat-room',
   templateUrl: './chat-room.component.html',
