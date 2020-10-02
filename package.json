@@ -33,7 +33,7 @@
     "@angular/router": "10.1.4",
     "ajv": "6.10.2",
     "angularfire2": "5.2.1",
-    "angulartics2": "8.0.0",
+    "angulartics2": "^10.0.0",
     "core-js": "3.2.1",
     "firebase": "6.6.0",
     "firebaseui": "4.2.0",
