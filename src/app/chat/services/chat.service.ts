@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
+// import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces'; // Unused?
 import { Chat } from '../chat.model';
 
 @Injectable({

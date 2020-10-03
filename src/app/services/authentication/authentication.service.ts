@@ -6,13 +6,13 @@ import * as firebase from 'firebase/app';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 
 // Import Firebase and AngularFire
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Profile } from '../../models/user';
-import { flatMap, tap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { User } from 'firebase/app';
-import { Provider } from '@angular/compiler/src/compiler_facade_interface';
+// import { Provider } from '@angular/compiler/src/compiler_facade_interface';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class AuthenticationService {
     const profileUrl = `https://www.gravatar.com/${hash}.json`;
 
     return this.http.jsonp(profileUrl, 'callback')
-    .pipe(flatMap(
+    .pipe(mergeMap(
       (gravitarProfile: any) => this.db.object(`/users/${profile.uid}/displayName`).update(gravitarProfile.entry[0].displayName)
     ));
   }

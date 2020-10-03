@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ContactService } from './contact.service';
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from '@angular/fire/database';
 import { Mock } from 'ts-mocks';
 import { of } from 'rxjs';
 

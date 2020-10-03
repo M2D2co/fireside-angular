@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
 import { User } from 'firebase';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { takeUntil } from 'rxjs/operators';
 import { ChatService } from '../services/chat.service';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { Content } from '@angular/compiler/src/render3/r3_ast';  // Unused import?
 import { Chat } from '../chat.model';
 @Component({
   selector: 'starter-chat-room',
