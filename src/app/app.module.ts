@@ -5,9 +5,6 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule, HttpClientJsonpModule } from '@angular/common/http';
 
-//  Angular Material
-import 'hammerjs';
-
 //  Routing
 import { AppRoutingModule } from './app.routing';
 
@@ -17,16 +14,16 @@ import { AuthInterceptor } from './interceptors/auth-interceptor.service';
 //  Modules
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 //  Angulartics
 import { Angulartics2Module } from 'angulartics2';
 import { ErrorService } from './services/error/error.service';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ChatService } from './chat/services/chat.service';
 
 @NgModule({

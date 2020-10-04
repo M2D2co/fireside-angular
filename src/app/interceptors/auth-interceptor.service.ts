@@ -3,8 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { AuthenticationService } from '../services/authentication/authentication.service';
 
 
-import { Observable } from 'rxjs';
-import { from } from 'rxjs/observable/from';
+import { Observable, from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })

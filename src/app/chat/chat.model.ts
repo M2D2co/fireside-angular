@@ -1,4 +1,4 @@
-class Chat {
+export class Chat {
   content?: string;
   sentImage?: string;
   displayName: string;
