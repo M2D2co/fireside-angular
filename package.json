@@ -12,7 +12,6 @@
     "docs": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
     "serve-docs": "compodoc -s",
     "build:test": "ng build -c test",
-    "serve:api": "ng serve -c api",
     "deploy:test": "firebase deploy --token=$FIREBASE_TOKEN --project fireside-73c10 --non-interactive",
     "release": "git checkout master && git pull && git checkout release && git pull && git merge master && git push",
     "preversion": "git checkout master && git pull",
@@ -67,5 +66,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "4.0.3"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.1.3"
   }
 }

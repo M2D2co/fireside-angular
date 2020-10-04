@@ -11,6 +11,9 @@
 /node_modules
 functions/node_modules
 
+# configuration
+firebase-config.json
+
 # IDEs and editors
 /.idea
 .project
