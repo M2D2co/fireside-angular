@@ -1,8 +1,8 @@
 {
   "name": "playingwithfire-fireside",
   "version": "8.1.0",
-  "author": "Andromeda Galactic Solutions",
-  "homepage": "https://andromedagalactic.com",
+  "author": "M2D2 Enterprises",
+  "homepage": "https://github.com/M2D2co/fireside-angular",
   "private": true,
   "scripts": {
     "ng": "ng",
