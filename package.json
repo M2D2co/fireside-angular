@@ -1,6 +1,8 @@
 {
-  "name": "playingwithfire",
-  "version": "8.0.0",
+  "name": "playingwithfire-fireside",
+  "version": "8.1.0",
+  "author": "Andromeda Galactic Solutions",
+  "homepage": "https://andromedagalactic.com",
   "private": true,
   "scripts": {
     "ng": "ng",
