@@ -8,10 +8,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-// Initialize Google Analytics
-if (environment.google.trackingId) {
-  window['ga']('create', environment.google.trackingId, 'auto');
-}
-
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+  .catch(err => console.error(err));

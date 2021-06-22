@@ -15,16 +15,15 @@
     <div *ngFor="let chat of chats | async | reverse">
       <span>
         <div>
-          <span class="info">{{chat.displayName || ''}} 
+          <span class="info">{{chat.displayName}} 
             <i *ngIf="chat.displayName && chat.timestamp"
               class="fa fa-circle" aria-hidden="true"></i> {{ chat.timestamp | date:'medium' }}</span>
         </div>
         <div class="chat-bubble">
-          <img class="avatar" *ngIf="chat.photoURL" [src]="chat.photoURL"
-            alt="avatar">
+          <img class="avatar" *ngIf="chat.avatarURL" [src]="chat.avatarURL" alt="avatar">
           <span class="message">
-            <span *ngIf="chat.content">{{chat.content}}</span>
-            <img *ngIf="chat.sentImage" src="{{chat.sentImage}}">
+            <span *ngIf="chat.contentText">{{chat.contentText}}</span>
+            <img *ngIf="chat.contentImageURL" src="{{chat.contentImageURL}}">
           </span>
         </div>
       </span>

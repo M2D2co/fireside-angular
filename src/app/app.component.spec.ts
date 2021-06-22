@@ -1,36 +1,35 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouterlessTracking, ANGULARTICS2_TOKEN } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
-
-class FakeService {
-  startTracking() {}
-}
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      imports: [ RouterTestingModule ],
-      declarations: [ AppComponent ],
-      providers: [
-        { provide: RouterlessTracking, useClass: FakeService },
-        { provide: Angulartics2GoogleAnalytics, useClass: FakeService }
-      ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
     }).compileComponents();
-  }));
-  it('should create the app', async(() => {
+  });
+
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-    fixture.destroy();
-  }));
-  it(`should have as title 'Fireside'`, async(() => {
+  });
+
+  it(`should have as title 'fireside-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Fireside');
-    fixture.destroy();
-  }));
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('fireside-angular');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('fireside-angular app is running!');
+  });
 });

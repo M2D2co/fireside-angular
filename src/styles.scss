@@ -1,10 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import '~@angular/material/theming';
 @import './assets/scss/theme';
 @import './assets/scss/colors';
 @import './assets/scss/mixins';
 @import './assets/scss/forms';
+@import '~firebaseui/dist/firebaseui.css';
 
 
 * { box-sizing: border-box; }
@@ -197,3 +196,6 @@ pre {
   display: flex;
   justify-content: flex-end;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

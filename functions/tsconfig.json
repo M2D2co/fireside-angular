@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    "lib": ["es6"],
+    "lib": ["ES2019", "ESNext.String"],
     "module": "commonjs",
     "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "outDir": "lib",
     "sourceMap": true,
-    "target": "es6",
-    "types": [
-      "node",
-      "jasmine"
-    ]
+    "strict": true,
+    "target": "es2017"
   },
   "compileOnSave": true,
   "include": [

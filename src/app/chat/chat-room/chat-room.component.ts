@@ -1,30 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject, Observable } from 'rxjs';
-import { User } from 'firebase';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { takeUntil } from 'rxjs/operators';
-import { ChatService } from '../services/chat.service';
-import { Content } from '@angular/compiler/src/render3/r3_ast';  // Unused import?
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable, Subject } from 'rxjs';
 import { Chat } from '../chat.model';
+import { ChatService } from '../services/chat.service';
+import { takeUntil } from 'rxjs/operators';
+import { Profile } from '../../models/profile.model';
+import { AuthService } from '../../services/auth.service';
+
 @Component({
-  selector: 'starter-chat-room',
+  selector: 'app-chat-room',
   templateUrl: './chat-room.component.html',
   styleUrls: ['./chat-room.component.scss']
 })
-export class ChatRoomComponent implements OnInit {
-  destroyed$: Subject<boolean> = new Subject();
+export class ChatRoomComponent implements OnDestroy {
+  private destroyed$: Subject<boolean> = new Subject();
+  private currentUser: Profile | null = null;
 
+  readonly chatForm: FormGroup;
+  readonly chats: Observable<Chat[]>;
   inputImage = false;
 
-  currentUser: User;
-  chatForm: FormGroup;
-  chats: Observable<Chat[]>;
-
   constructor(
-    private authenticationService: AuthenticationService,
+    public auth: AngularFireAuth,
+    private authSvc: AuthService,
     private fb: FormBuilder,
     private chatService: ChatService,
   ) {
@@ -33,14 +32,27 @@ export class ChatRoomComponent implements OnInit {
       file: [''],
       image: [''],
     });
-  }
 
-  ngOnInit() {
-    this.authenticationService.authInfo.pipe(takeUntil(this.destroyed$)).subscribe(user => {
+    this.chats = this.chatService.list();
+
+    this.authSvc.profile.pipe(takeUntil(this.destroyed$)).subscribe(user => {
+      console.log('Chat User', user);
       this.currentUser = user;
     });
+  }
 
-    this.chats = this.chatService.listChats().pipe(takeUntil(this.destroyed$));
+  sendChat() {
+    const content = this.chatForm.controls.content.value;
+    const image = this.chatForm.controls.image.value;
+
+    if (!this.currentUser) {
+      console.error('User not logged in - cannot send chat');
+      return;
+    }
+
+    this.chatService.post(image && image.name ? image : content, this.currentUser).then(() => {
+      this.chatForm.reset();
+    });
   }
 
   selectImage(event: any) {
@@ -51,28 +63,13 @@ export class ChatRoomComponent implements OnInit {
     }
   }
 
-  async sendChat() {
-    const content = this.chatForm.get('content').value;
-    const image = this.chatForm.get('image').value;
-
-    const chat: Chat = {
-      content: content,
-      timestamp: new Date(),
-      uid: this.currentUser.uid,
-      displayName: this.currentUser.displayName,
-      photoURL: this.currentUser.photoURL,
-    };
-    if (content || (image && image.name)) {
-      const key = await this.chatService.postChat(chat);
-      if (image && image.name) {
-        await this.chatService.uploadImage(chat, image, key);
-      }
-      this.chatForm.reset();
-    }
-  }
-
   toggleInputImage() {
     this.inputImage = !this.inputImage;
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
 }

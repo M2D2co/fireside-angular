@@ -1,8 +1,18 @@
-export class Chat {
-  content?: string;
-  sentImage?: string;
+import { Timestamp } from '@firebase/firestore-types';
+
+export interface Chat {
+  contentText: string;
+  contentImageURL?: string;
   displayName: string;
-  photoURL: string;
+  avatarURL: string;
   timestamp: Date;
+}
+
+export interface ChatRecord {
+  contentText: string;
+  contentImageURL?: string;
   uid: string;
+  displayName: string;
+  avatarURL: string;
+  timestamp: Timestamp;
 }

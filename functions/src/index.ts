@@ -1,2 +1,1 @@
-// Export Functions
-export * from './functions/chat-fun'
+export * from './functions'

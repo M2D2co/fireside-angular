@@ -1,61 +1,39 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, ErrorHandler } from '@angular/core';
-import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule, HttpClientJsonpModule } from '@angular/common/http';
-
-//  Routing
-import { AppRoutingModule } from './app.routing';
-
-// Services
-import { AuthInterceptor } from './interceptors/auth-interceptor.service';
-
-//  Modules
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-
-//  Angulartics
-import { Angulartics2Module } from 'angulartics2';
-import { ErrorService } from './services/error/error.service';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
-import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { ChatService } from './chat/services/chat.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { ChatModule } from './chat/chat.module';
+import firebaseConfig from '../firebase.config.json';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatRoomComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     CoreModule,
     SharedModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    HttpClientXsrfModule.withOptions({
-      cookieName: 'My-Xsrf-Cookie',
-      headerName: 'My-Xsrf-Header',
-    }),
-
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    AngularFireStorageModule,
-    Angulartics2Module.forRoot(),
+    ChatModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    { provide: ErrorHandler, useClass: ErrorService },
     AngularFireAuthGuard,
-    ChatService,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
