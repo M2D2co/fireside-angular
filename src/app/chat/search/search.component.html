@@ -1,17 +1,14 @@
-<div class="chat">
-  <h1>Chat Room</h1>
+<div class="search">
+  <h1>Search</h1>
+  <p>Enter an email address to search for chat messages.</p>
   <div class="input-group">
-    <button mat-icon-button (click)="toggleInputImage()">
-        <mat-icon *ngIf="inputImage">camera_alt</mat-icon>
-        <mat-icon *ngIf="!inputImage">edit</mat-icon>
-    </button>
-    <form class="input-group-form" [formGroup]="chatForm" (submit)="sendChat()">
-      <input *ngIf="!inputImage" class="content" mat-input formControlName="content" type="text" spellcheck="true">
-      <input *ngIf="inputImage" class="file" mat-input formControlName="file" type="file" accept="image/*" (change)="selectImage($event)">
-      <button class="send" type="submit" mat-flat-button color="primary">Send</button>
+    <form class="input-group-form" [formGroup]="searchForm" (submit)="search()">
+      <input class="search-field" mat-input formControlName="search" type="text" spellcheck="true">
+      <button class="send" type="submit" mat-flat-button color="primary">Search</button>
     </form>
   </div>
   <div id="chats" class="chat-list">
+    <div *ngIf="(chats | async) === null">No Results</div>
     <div *ngFor="let chat of chats | async">
       <span>
         <div>

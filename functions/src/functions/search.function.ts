@@ -16,7 +16,7 @@ export const apiOnGet_Chats_byEmail = functions.https.onRequest(async (request, 
 
   try {
     const userRecord = await admin.auth().getUserByEmail(email)
-    const snapshot = await admin.firestore().collection('chats').where('uid', '==', userRecord.uid).get()
+    const snapshot = await admin.firestore().collection('chats').where('uid', '==', userRecord.uid).orderBy('timestamp', 'desc').get()
     const chats: Chat[] = snapshot.docs.map(doc => doc.data() as ChatRecord).map(record => ({
       contentText: record.contentText,
       contentImageURL: record.contentImageURL,

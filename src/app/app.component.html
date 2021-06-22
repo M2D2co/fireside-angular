@@ -6,6 +6,7 @@
     <nav>
       <ul>
         <li *ngIf="(user | async)"><a [routerLink]="['/']" routerLinkActive="router-link-active">Chat Room</a></li>
+        <li *ngIf="(user | async)"><a [routerLink]="['/search']" routerLinkActive="router-link-active">Search</a></li>
         <li *ngIf="(user | async) === null"><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></li>
         <!-- <li *ngIf="(user | async)"><a [routerLink]="['/profile']" routerLinkActive="router-link-active">Profile</a></li> -->
         <!-- <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a></li> -->
@@ -19,10 +20,9 @@
   </div>
 
   <footer>
-    <a href="andromeda16.com/accessibility-statement" target="_blank" rel="noopner">Accessibility Statement</a>
     <span>
-      &copy; 2019 <span *ngIf="startYear !== currentYear">- {{ currentYear }}</span>
-      <a href="andromeda16.com" target="_blank" rel="noopner">Andromeda</a>
+      &copy; {{startYear}} <span *ngIf="startYear !== currentYear">- {{ currentYear }}</span>
+      M2D2 Enterprises LLC
     </span>
   </footer>
 </div>

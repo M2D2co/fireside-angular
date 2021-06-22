@@ -7,7 +7,11 @@ import { map } from 'rxjs/operators';
 import { Profile } from '../../models/profile.model';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { HttpClient } from '@angular/common/http';
 
+interface ChatFromAPI extends Omit<Chat, 'timestamp'> {
+  timestamp: string;
+}
 
 @Injectable()
 export class ChatService {
@@ -15,21 +19,33 @@ export class ChatService {
   constructor(
     private db: AngularFirestore,
     private fs: AngularFireStorage,
+    private http: HttpClient,
   ) { }
+
+  private convertRecordToChat(record: ChatRecord): Chat {
+    return {
+      contentText: record.contentText,
+      contentImageURL: record.contentImageURL,
+      displayName: record.displayName,
+      avatarURL: record.avatarURL,
+      timestamp: record.timestamp.toDate(),
+    };
+  }
 
   /**
    * Returns an active observable of all chats in the log.
    */
   list(): Observable<Chat[]> {
-    return this.db.collection<ChatRecord>('chats').valueChanges().pipe(
-      map(records => records.map(
-        record => ({
-          contentText: record.contentText,
-          contentImageURL: record.contentImageURL,
-          displayName: record.displayName,
-          avatarURL: record.avatarURL,
-          timestamp: record.timestamp.toDate(),
-        })
+    return this.db.collection<ChatRecord>('chats', ref => ref.orderBy('timestamp', 'desc')).valueChanges().pipe(
+      map(records => records.map(this.convertRecordToChat))
+    );
+  }
+
+  search(email: string): Observable<Chat[]> {
+    const url = `/api/search?email=${email}`;
+    return this.http.get<ChatFromAPI[]>(url).pipe(
+      map(chats => chats.map(
+        chat => ({ ...chat, timestamp: new Date(chat.timestamp) })
       ))
     );
   }

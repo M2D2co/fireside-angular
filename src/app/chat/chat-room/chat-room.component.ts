@@ -7,6 +7,7 @@ import { ChatService } from '../services/chat.service';
 import { takeUntil } from 'rxjs/operators';
 import { Profile } from '../../models/profile.model';
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-chat-room',
@@ -22,6 +23,7 @@ export class ChatRoomComponent implements OnDestroy {
   inputImage = false;
 
   constructor(
+    public snackBar: MatSnackBar,
     public auth: AngularFireAuth,
     private authSvc: AuthService,
     private fb: FormBuilder,
@@ -36,7 +38,6 @@ export class ChatRoomComponent implements OnDestroy {
     this.chats = this.chatService.list();
 
     this.authSvc.profile.pipe(takeUntil(this.destroyed$)).subscribe(user => {
-      console.log('Chat User', user);
       this.currentUser = user;
     });
   }
@@ -45,8 +46,15 @@ export class ChatRoomComponent implements OnDestroy {
     const content = this.chatForm.controls.content.value;
     const image = this.chatForm.controls.image.value;
 
+    if (!content && !image) {
+      return;
+    }
+
     if (!this.currentUser) {
-      console.error('User not logged in - cannot send chat');
+      this.snackBar.open('User not logged in - cannot send chat', 'Close', {
+        duration: 5000,
+        panelClass: ['snackbar-error']
+      });
       return;
     }
 
