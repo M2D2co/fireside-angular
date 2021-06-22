@@ -1,2 +1,2 @@
-export * from './emoji.function'
-export * from './search.function'
+export * from './emoji.function';
+export * from './search.function';
