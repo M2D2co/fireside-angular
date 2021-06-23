@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Chat } from '../chat.model';
 import { ChatService } from '../services/chat.service';
 
@@ -11,6 +12,7 @@ import { ChatService } from '../services/chat.service';
 })
 export class SearchComponent {
   readonly searchForm: FormGroup;
+  searching = false;
 
   chats: Observable<Chat[]>;
 
@@ -29,8 +31,9 @@ export class SearchComponent {
     if (!search) {
       return;
     }
+    this.searching = true;
 
-    this.chats = this.chatService.search(search);
+    this.chats = this.chatService.search(search).pipe(tap(() => this.searching = false));
   }
 
 }

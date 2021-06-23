@@ -5,12 +5,12 @@ $primary: (
   100 : #cee4e4,
   200 : #add2d2,
   300 : #8cbfc0,
-  400 : #0A3F7F,
-  500 : darken(#0A3F7F,15%),
-  600 : darken(#0A3F7F,15%),
-  700 : darken(#0A3F7F,15%),
+  400 : lighten(#0A3F7F,20%),
+  500 : lighten(#0A3F7F,10%),
+  600 : #0A3F7F,
+  700 : darken(#0A3F7F,10%),
   800 : darken(#0A3F7F,15%),
-  900 : darken(#0A3F7F,15%),
+  900 : darken(#0A3F7F,20%),
   A100 : #c2feff,
   A200 : #8ffdff,
   A400 : #5cfdff,
@@ -21,15 +21,15 @@ $primary: (
     200: #6C717F,
     300: #6C717F,
     400: #293A44,
-    500: $white-87-opacity,
-    600: $white-87-opacity,
-    700: $white-87-opacity,
-    800: $white-87-opacity,
-    900: $white-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
     A100: #6C717F,
-    A200: $white-87-opacity,
-    A400: $white-87-opacity,
-    A700: $white-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
   )
 );
 
@@ -110,7 +110,7 @@ $warn: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://www.google.com/design/spec/style/color.html
-$app-primary: mat-palette($primary);
+$app-primary: mat-palette($primary, 500);
 $app-accent:  mat-palette($accent, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
