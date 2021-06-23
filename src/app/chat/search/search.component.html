@@ -1,29 +1,26 @@
 <div class="search">
   <h1>Search</h1>
-  <p>Enter an email address to search for chat messages.</p>
+  <p class="instructions">Enter an email address to search for chat messages.</p>
   <div class="input-group">
     <form class="input-group-form" [formGroup]="searchForm" (submit)="search()">
-      <input class="search-field" mat-input formControlName="search" type="text" spellcheck="true">
+      <input class="search-field" mat-input formControlName="search" type="text" spellcheck="true" aria-label="search" placeholder="Email">
       <button class="send" type="submit" mat-flat-button color="primary">Search</button>
     </form>
   </div>
   <div id="chats" class="chat-list">
-    <div *ngIf="(chats | async) === null">No Results</div>
-    <div *ngFor="let chat of chats | async">
-      <span>
-        <div>
-          <span class="info">{{chat.displayName}} 
-            <i *ngIf="chat.displayName && chat.timestamp"
-              class="fa fa-circle" aria-hidden="true"></i> {{ chat.timestamp | date:'medium' }}</span>
-        </div>
+    <div *ngIf="(chats | async) === null && !searching">No Results</div>
+    <mat-spinner *ngIf="searching"></mat-spinner>
+    <div id="chats" class="chat-list">
+      <div *ngFor="let chat of chats | async" class="message">
+        <img class="avatar" *ngIf="chat.avatarURL" [src]="chat.avatarURL" alt="avatar">
         <div class="chat-bubble">
-          <img class="avatar" *ngIf="chat.avatarURL" [src]="chat.avatarURL" alt="avatar">
-          <span class="message">
-            <span *ngIf="chat.contentText">{{chat.contentText}}</span>
-            <img *ngIf="chat.contentImageURL" src="{{chat.contentImageURL}}">
-          </span>
+          <div>
+            <div *ngIf="chat.contentText">{{chat.contentText}}</div>
+            <img *ngIf="chat.contentImageURL" src="{{chat.contentImageURL}}" alt="user provided image">
+          </div>
         </div>
-      </span>
+        <div class="info">{{chat.displayName}} - {{ chat.timestamp | date:'MMM dd, YYYY @ hh:mm a' }}</div>
+      </div>
     </div>
   </div>
 </div>
