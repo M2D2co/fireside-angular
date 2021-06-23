@@ -8,8 +8,6 @@
         <li *ngIf="(user | async)"><a [routerLink]="['/']" routerLinkActive="router-link-active">Chat Room</a></li>
         <li *ngIf="(user | async)"><a [routerLink]="['/search']" routerLinkActive="router-link-active">Search</a></li>
         <li *ngIf="(user | async) === null"><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></li>
-        <!-- <li *ngIf="(user | async)"><a [routerLink]="['/profile']" routerLinkActive="router-link-active">Profile</a></li> -->
-        <!-- <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a></li> -->
         <li *ngIf="(user | async)"><a [routerLink]="['/logout']" routerLinkActive="router-link-active">Logout</a></li>
       </ul>
     </nav>

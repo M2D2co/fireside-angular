@@ -29,6 +29,7 @@ export class ChatService {
       displayName: record.displayName,
       avatarURL: record.avatarURL,
       timestamp: record.timestamp.toDate(),
+      uid: record.uid,
     };
   }
 

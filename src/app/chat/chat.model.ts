@@ -6,6 +6,7 @@ export interface Chat {
   displayName: string;
   avatarURL: string;
   timestamp: Date;
+  uid: string;
 }
 
 export interface ChatRecord {

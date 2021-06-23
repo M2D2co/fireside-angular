@@ -21,6 +21,7 @@ export class ChatRoomComponent implements OnDestroy {
   readonly chatForm: FormGroup;
   readonly chats: Observable<Chat[]>;
   inputImage = false;
+  user = this.auth.authState;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -58,7 +59,8 @@ export class ChatRoomComponent implements OnDestroy {
       return;
     }
 
-    this.chatService.post(image && image.name ? image : content, this.currentUser).then(() => {
+    this.chatService.post(image && image.name ? image : content, this.currentUser)
+    .then(() => {
       this.chatForm.reset();
     });
   }

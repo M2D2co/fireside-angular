@@ -1,32 +1,26 @@
 <div class="chat">
   <h1>Chat Room</h1>
   <div class="input-group">
-    <button mat-icon-button (click)="toggleInputImage()">
-        <mat-icon *ngIf="inputImage">camera_alt</mat-icon>
-        <mat-icon *ngIf="!inputImage">edit</mat-icon>
+    <button mat-icon-button (click)="toggleInputImage()" aria-label="toggle text vs image">
+        <mat-icon *ngIf="!inputImage">camera_alt</mat-icon>
+        <mat-icon *ngIf="inputImage">edit</mat-icon>
     </button>
     <form class="input-group-form" [formGroup]="chatForm" (submit)="sendChat()">
-      <input *ngIf="!inputImage" class="content" mat-input formControlName="content" type="text" spellcheck="true">
-      <input *ngIf="inputImage" class="file" mat-input formControlName="file" type="file" accept="image/*" (change)="selectImage($event)">
+      <input *ngIf="!inputImage" class="content" mat-input formControlName="content" type="text" spellcheck="true" aria-label="chat message" placeholder="Message...">
+      <input *ngIf="inputImage" class="file" mat-input formControlName="file" type="file" accept="image/*" (change)="selectImage($event)" aria-label="chat image">
       <button class="send" type="submit" mat-flat-button color="primary">Send</button>
     </form>
   </div>
   <div id="chats" class="chat-list">
-    <div *ngFor="let chat of chats | async">
-      <span>
+    <div *ngFor="let chat of chats | async" class="message" [ngClass]="{ 'my-chat': (user | async)?.uid === chat.uid }">
+      <img class="avatar" *ngIf="chat.avatarURL" [src]="chat.avatarURL" alt="avatar">
+      <div class="chat-bubble">
         <div>
-          <span class="info">{{chat.displayName}} 
-            <i *ngIf="chat.displayName && chat.timestamp"
-              class="fa fa-circle" aria-hidden="true"></i> {{ chat.timestamp | date:'medium' }}</span>
+          <div *ngIf="chat.contentText">{{chat.contentText}}</div>
+          <img *ngIf="chat.contentImageURL" src="{{chat.contentImageURL}}" alt="user provided image">
         </div>
-        <div class="chat-bubble">
-          <img class="avatar" *ngIf="chat.avatarURL" [src]="chat.avatarURL" alt="avatar">
-          <span class="message">
-            <span *ngIf="chat.contentText">{{chat.contentText}}</span>
-            <img *ngIf="chat.contentImageURL" src="{{chat.contentImageURL}}">
-          </span>
-        </div>
-      </span>
+      </div>
+      <div class="info">{{chat.displayName}} - {{ chat.timestamp | date:'MMM dd, YYYY @ hh:mm a' }}</div>
     </div>
   </div>
 </div>
