@@ -37,31 +37,34 @@ export class ChatService {
    * Returns an active observable of all chats in the log.
    */
   list(): Observable<Chat[]> {
-    return this.db.collection<ChatRecord>('chats', ref => ref.orderBy('timestamp', 'desc')).valueChanges().pipe(
-      map(records => records.map(this.convertRecordToChat))
-    );
+    return null;
+    // return this.db.collection<ChatRecord>('chats', ref => ref.orderBy('timestamp', 'desc')).valueChanges().pipe(
+    //   map(records => records.map(this.convertRecordToChat))
+    // );
   }
 
   search(email: string): Observable<Chat[]> {
     const url = `/api/search?email=${email}`;
-    return this.http.get<ChatFromAPI[]>(url).pipe(
-      map(chats => chats.map(
-        chat => ({ ...chat, timestamp: new Date(chat.timestamp) })
-      ))
-    );
+    return null;
+    // return this.http.get<ChatFromAPI[]>(url).pipe(
+    //   map(chats => chats.map(
+    //     chat => ({ ...chat, timestamp: new Date(chat.timestamp) })
+    //   ))
+    // );
   }
 
   /**
    * Stores a chat to the log and returns the new chat ID.
    */
   private saveChat(content: string | File, user: Profile): Promise<string> {
-    return this.db.collection<ChatRecord>('chats').add({
-      contentText: typeof content === 'string' ? content : '',
-      uid: user.uid,
-      displayName: user.displayName,
-      avatarURL: user.avatarUrl,
-      timestamp: Timestamp.now(),
-    }).then(ref => ref.id);
+    return null;
+    // return this.db.collection<ChatRecord>('chats').add({
+    //   contentText: typeof content === 'string' ? content : '',
+    //   uid: user.uid,
+    //   displayName: user.displayName,
+    //   avatarURL: user.avatarUrl,
+    //   timestamp: Timestamp.now(),
+    // }).then(ref => ref.id);
   }
 
   /**
@@ -69,18 +72,18 @@ export class ChatService {
    */
   async post(content: string | File, user: Profile): Promise<string> {
     const id = await this.saveChat(content, user);
-    if (content instanceof File) {
-      const filePath = `/images/${user.uid}/${id}/${content.name}`;
-      // Upload the image
-      const snapshot = await this.fs.upload(filePath, content);
-      // Find the public download URL
-      const imageUrl = await snapshot.ref.getDownloadURL();
-      // Update the chat record with the image info
-      this.db.doc(`/chats/${id}`).update({
-        contentText: `User-provided image: ${content.name}`,
-        contentImageURL: imageUrl,
-      });
-    }
+    // if (content instanceof File) {
+    //   const filePath = `/images/${user.uid}/${id}/${content.name}`;
+    //   // Upload the image
+    //   const snapshot = await this.fs.upload(filePath, content);
+    //   // Find the public download URL
+    //   const imageUrl = await snapshot.ref.getDownloadURL();
+    //   // Update the chat record with the image info
+    //   this.db.doc(`/chats/${id}`).update({
+    //     contentText: `User-provided image: ${content.name}`,
+    //     contentImageURL: imageUrl,
+    //   });
+    // }
     return id;
   }
 
