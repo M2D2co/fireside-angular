@@ -8,7 +8,7 @@ export const dbOnCreate_Chats_Update = functions.firestore.document('/chats/{cha
 
     if (chat.contentText) {
       console.log('Replacing lol with emoji on chat ' + context.params.chatId);
-      chat.contentText = chat.contentText.replace(/lol/g, '😂');
+      chat.contentText = chat.contentText.replace('lol', '😂');
       return snapshot.ref.update(chat);
     }
     return Promise.resolve();
