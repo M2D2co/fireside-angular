@@ -11,9 +11,9 @@ export class LoginComponent {
 
   constructor(
     public snackBar: MatSnackBar,
-    private firebaseuiAngularLibraryService: FirebaseuiAngularLibraryService,
+    // private firebaseuiAngularLibraryService: FirebaseuiAngularLibraryService,
   ) {
-    this.firebaseuiAngularLibraryService.firebaseUiInstance.disableAutoSignIn();
+    // this.firebaseuiAngularLibraryService.firebaseUiInstance.disableAutoSignIn();
   }
 
   handleError(errorData: FirebaseUISignInFailure) {

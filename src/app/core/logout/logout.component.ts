@@ -12,9 +12,9 @@ export class LogoutComponent {
     private auth: AngularFireAuth,
     private router: Router,
   ) {
-    auth.signOut().then(() => {
-      router.navigate(['/login']);
-    });
+    // auth.signOut().then(() => {
+    //   router.navigate(['/login']);
+    // });
   }
 
 }
