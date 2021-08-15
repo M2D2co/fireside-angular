@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 export class LogoutComponent {
 
   constructor(
-    private auth: AngularFireAuth,
+    private auth: AuthService,
     private router: Router,
   ) {
-    auth.signOut().then(() => {
+    auth.logout().then(() => {
       router.navigate(['/login']);
     });
   }

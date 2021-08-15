@@ -34,6 +34,10 @@ export class AuthService {
     private db: AngularFirestore,
   ) { }
 
+  logout(): Promise<void> {
+    return this.auth.signOut();
+  }
+
   private async buildProfile(user: User): Promise<Profile> {
     // Default to auth settings
     const profile = {
