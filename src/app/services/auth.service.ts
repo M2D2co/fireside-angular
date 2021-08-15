@@ -35,7 +35,8 @@ export class AuthService {
   ) { }
 
   logout(): Promise<void> {
-    return this.auth.signOut();
+    // TODO: Replace this return statement with a logout from Firebase Auth
+    return Promise.resolve();
   }
 
   private async buildProfile(user: User): Promise<Profile> {
