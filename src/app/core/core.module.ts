@@ -6,24 +6,25 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { SharedModule } from '../shared/shared.module';
 
-// const firebaseUiAuthConfig: firebaseui.auth.Config = {
-//   signInSuccessUrl: '/',
-//   signInFlow: 'redirect',
-//   signInOptions: [
-//     {
-//       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-//       customParameters: {
-//         // Forces account selection even when one account is available.
-//         prompt: 'select_account',
-//       },
-//     },
-//     {
-//       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-//       requireDisplayName: false,
-//     },
-//   ],
-//   credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
-// };
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInSuccessUrl: '/',
+  signInFlow: 'redirect',
+  signInOptions: [
+    // TODO: Select your Auth providers below
+    // {
+    //   provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    //   customParameters: {
+    //     // Forces account selection even when one account is available.
+    //     prompt: 'select_account',
+    //   },
+    // },
+    // {
+    //   provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    //   requireDisplayName: false,
+    // },
+  ],
+  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+};
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    // FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    // TODO: Add the Firebase UI configuration here
     SharedModule,
   ],
   providers: []
