@@ -3,7 +3,7 @@
 ## list()
 
 ```
-    return this.db.collection<ChatRecord>('chats', ref => ref.orderBy('timestamp', 'desc')).valueChanges().pipe(
+    return this.db.collection<ChatRecord>('chats', ref  => ref.orderBy('timestamp', 'desc')).valueChanges().pipe(
       map(records => records.map(this.convertRecordToChat))
     );
 ```
