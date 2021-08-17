@@ -1,3 +1,22 @@
+# References
+
+* Auth
+  * https://firebase.google.com/docs/auth/web/firebaseui
+  * https://firebase.google.com/docs/reference/js/firebase.auth
+* Firestore
+  * https://firebase.google.com/docs/firestore
+  * https://firebase.google.com/docs/reference/js/firebase.firestore
+* Rules
+  * https://firebase.google.com/docs/firestore/security/rules-structure
+  * https://firebase.google.com/docs/reference/security/database
+* Storage
+  * https://firebase.google.com/docs/storage/web/start
+  * https://firebase.google.com/docs/reference/js/firebase.storage
+*  Functions
+  * https://firebase.google.com/docs/functions
+  * https://firebase.google.com/docs/reference/functions
+
+
 # chat.service.ts
 
 ## list()
@@ -92,4 +111,29 @@
       return snapshot.ref.update(chat);
     }
     return Promise.resolve();
+```
+
+# Security Rules
+
+## firestore.rules
+
+```
+    match /chats/{documents=**} {
+      allow read: if request.auth != null;
+      allow create: if request.resource.data.uid == request.auth.uid;
+      allow update: if resource.data.uid == request.auth.uid;
+    }
+    match /users/{uid}/{documents=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth.uid == uid;
+    }
+```
+
+## storage.rules
+
+```
+    match /images/{userId}/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth.uid == userId;
+    }
 ```
