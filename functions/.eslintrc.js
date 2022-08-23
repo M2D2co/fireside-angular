@@ -15,6 +15,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['tsconfig.json', 'tsconfig.dev.json'],
+    tsconfigRootdir: __dirname,
     sourceType: 'module',
   },
   ignorePatterns: [
@@ -30,5 +31,6 @@ module.exports = {
     'indent': ['warn', 2],
     'object-curly-spacing': ['warn', 'always'],
     'max-len': ['warn', 100],
+    'import/no-unresolved': 0,
   },
 };

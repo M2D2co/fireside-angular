@@ -29,6 +29,8 @@ export const apiOnGet_Chats_byEmail = functions.https.onRequest(async (request, 
     response.status(200).send(chats);
   } catch (e) {
     console.error(e);
-    response.status(400).send(e.message);
+    if (e instanceof Error) {
+      response.status(400).send(e.message);
+    }
   }
 });
