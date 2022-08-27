@@ -1,19 +1,22 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Project config and cache files
+.angular/**
+.firebase/**
+firebase.config.json
+
 # compiled output
 /dist
 /tmp
 /out-tsc
-.angular/**
 
 # logs
 firebase-debug.log
 firestore-debug.log
+ui-debug.log
 
 # Only exists if Bazel was run
 /bazel-out
-firebase.config.json
-.firebase/**
 
 # dependencies
 /node_modules
@@ -48,7 +51,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-ui-debug.log
 
 # System Files
 .DS_Store
