@@ -1,27 +1,33 @@
-# FiresideAngular
+# PlayingWithFire-Fireside
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
+Node 14
+Angular 13
+Firebase SDK 9
 
-## Development server
+## Project Configuration
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The root of this repository contains the Firebase configuration with subfolders for each code project.
 
-## Code scaffolding
+* Angular under /angular
+* Cloud Functions under /functions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
 
-## Build
+Add a file named `firebase.config.json` to the /angular/src folder and copy your project config into this file.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+On a linux/unix commandline you can do this with: `firebase apps:sdkconfig > angular/src/firebase.config.json`
 
-## Running unit tests
+Either way, make sure the contents of the file are properly formatted JSON.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Commands
 
-## Running end-to-end tests
+* Run Angular project `npm start`
+* Run Emulators `npm run serve`
+* Lint `npm run lint`
+* Test `npm run test`
+* Build `npm run build`
+* Deploy `npm run deploy`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Emulated Development
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+In order to run the project in the local emulator you'll need to run emulators (see commands above) and configure the Angular project to use the emulated services instead of the deployed project resources. Open the environment file (/angular/src/environments/environment.ts for the local environment) and set `useEmulator: true`.

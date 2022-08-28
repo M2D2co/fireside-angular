@@ -1,0 +1,132 @@
+@use '@angular/material' as mat;
+$white-87-opacity: rgba(255, 255, 255, .87);
+
+$primary: (
+  50 : #ebf4f4,
+  100 : #cee4e4,
+  200 : #add2d2,
+  300 : #8cbfc0,
+  400 : lighten(#0A3F7F,20%),
+  500 : lighten(#0A3F7F,10%),
+  600 : #0A3F7F,
+  700 : darken(#0A3F7F,10%),
+  800 : darken(#0A3F7F,15%),
+  900 : darken(#0A3F7F,20%),
+  A100 : #c2feff,
+  A200 : #8ffdff,
+  A400 : #5cfdff,
+  A700 : #42fcff,
+  contrast: (
+    50: #6C717F,
+    100: #6C717F,
+    200: #6C717F,
+    300: #6C717F,
+    400: #293A44,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: #6C717F,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$accent: (
+  50 : #fffcf2,
+    100 : #fff7dd,
+    200 : #fff2c7,
+    300 : #ffecb1,
+    400 : #ffe8a0,
+    500 : #ffe48f,
+    600 : #ffe187,
+    700 : #ffdd7c,
+    800 : #ffd972,
+    900 : #ffd160,
+    A100 : #fff7dd,
+    A200 : #fff2c7,
+    A400 : #ffe8a0,
+    A700 : #ffdd7c,
+  contrast: (
+    50: #2f7879,
+    100: #2f7879,
+    200: #2f7879,
+    300: #2f7879,
+    400: #2f7879,
+    500: #2f7879,
+    600: #2f7879,
+    700: #2f7879,
+    800: #2f7879,
+    900: #2f7879,
+    A100: #2f7879,
+    A200: #2f7879,
+    A400: #2f7879,
+    A700: #2f7879
+  )
+);
+
+$warn: (
+    50 : #f3e6ea,
+    100 : #e0c1c9,
+    200 : #cc98a6,
+    300 : #b86e82,
+    400 : #a84f67,
+    500 : #99304c,
+    600 : #912b45,
+    700 : #86243c,
+    800 : #7c1e33,
+    900 : #6b1324,
+    A100 : #ffa1b0,
+    A200 : #ff6e85,
+    A400 : #ff3b5a,
+    A700 : #ff2245,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$app-primary: mat.define-palette($primary, 500);
+$app-accent:  mat.define-palette($accent, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$app-warn:    mat.define-palette($warn);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+$general-typography: mat.define-typography-config(
+  $font-family: '"Helvetica Neue", sans-serif'
+);
+
+
+@include mat.all-component-themes($app-theme);
+@include mat.core($general-typography);
